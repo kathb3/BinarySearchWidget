@@ -81,7 +81,15 @@ public class SearchButton
       numGuesses++;
     clicked = true;    
     targets[index].pressed();
-    if (targets[index].value == numToFind)
+    if(targets[index].value < numToFind)
+    {
+      low = index + 1;
+    }
+    else if(targets[index].value > numToFind)
+    {
+      high = index - 1;
+    }
+    else
       numFound = true;
     
     targets[index].pressed();
