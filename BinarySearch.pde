@@ -6,6 +6,8 @@ int startNum = int(random(900));
 int numToFind= startNum+int(random(numNums));
 int numGuesses = 0;
 boolean numFound = false;
+int low = 0;
+int high = 31;
 public void setup()
 {
   size(1000, 300);
@@ -44,9 +46,12 @@ public void draw()
   text("Number of Guesses: "+numGuesses, 600, 160);
   
   if (numFound) 
-    text("Number found after " + numGuesses + " guesses. Refresh browser to play again", 500, 240);
+    text("Number found after " + numGuesses + " guesses. Refresh browser to play again", 500, 260);
   else if (notInList())
-    text("Number not in list. Refresh browser to play again", 500, 240);
+    text("Number not in list. Refresh browser to play again", 500, 260);
+  textSize(18);
+  text("Low Index: " + low,100,200);
+  text("High Index: " + high,105,220);
   textSize(10);
 }
 public class SearchButton
@@ -81,10 +86,15 @@ public class SearchButton
     
     targets[index].pressed();
     if(targets[index].value < numToFind)
-      tooLow(index,targets[index].value);
+    {
+      low = index + 1;
+      tooLow(index,targets[index].value);  
+    }
     else if(targets[index].value > numToFind)
+    {
+      high = index - 1;
       tooHigh(index,targets[index].value);
-    
+    }
   }
   public void draw () 
   {    
