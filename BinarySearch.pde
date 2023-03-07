@@ -1,5 +1,5 @@
 import de.bezier.guido.*;
-TargetButton [] targets = new TargetButton[32];
+TargetButton [] targets = new TargetButton[15];
 ArrayList <Integer> nums = new ArrayList <Integer>();
 int numNums = int(random(900)+100);
 int startNum = int(random(900));
@@ -7,23 +7,23 @@ int numToFind= startNum+int(random(numNums));
 int numGuesses = 0;
 boolean numFound = false;
 int low = 0;
-int high = 31;
+int high = 14;
 public void setup()
 {
   size(1000, 300);
   textAlign(CENTER, CENTER);
   Interactive.make( this );
-  while(nums.size()<32)
+  while(nums.size()<15)
   {
     int num = startNum+int(random(numNums));
     if(!nums.contains(num))
       nums.add(num);
   }
-  int[] numsArray = new int[32];
-  for(int i = 0; i < 32; i++)
+  int[] numsArray = new int[15];
+  for(int i = 0; i < 15; i++)
     numsArray[i] = nums.get(i);
   numsArray = sort(numsArray);
-  for(int i = 0; i < 32; i++)
+  for(int i = 0; i < 15; i++)
     nums.set(i,numsArray[i]);
   if (!nums.contains(numToFind) && random(1)<.6)
     while (!nums.contains(numToFind))
@@ -175,13 +175,13 @@ public void tooLow(int pos, int val)
 }
 public void tooHigh(int pos, int val)
 {
-  for(int i = pos+1; i < 32; i++)
+  for(int i = pos+1; i < 15; i++)
     if(targets[i].label.equals("") || (val > Integer.parseInt(targets[i].label.substring(1))&& targets[i].label.substring(0,1).equals(">")))
       targets[i].setLabel(">"+val); 
 }
 public boolean notInList()
 {
-  for(int i = 0; i < 32; i++)
+  for(int i = 0; i < 15; i++)
     if(targets[i].label.equals(""))
       return false;
   return true;
